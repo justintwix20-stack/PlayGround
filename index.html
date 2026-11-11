@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#101a20">
+  <title>Olpetal Stories — Real Life Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Olpetal Stories home"><span class="brand-mark">O<span>↗</span></span><span class="brand-name">OLPETAL <b>STORIES</b><small>REAL LIFE EDITION · KREIS OLPE</small></span></a>
+      <div class="top-status"><span class="live-dot"></span><span>LEBEN IN OLPE</span><i></i><span id="clock">08:15</span><i></i><span id="weather">SONNIG</span></div>
+      <div class="top-actions"><button id="panelBtn" class="icon-btn panel-btn" title="Aufgaben">☰ <span>JOURNAL</span></button><button id="mapBtn" class="icon-btn" title="Karte (M)">⌖ <span>KARTE</span></button><button id="saveBtn" class="icon-btn" title="Speichern">▣ <span>SAVE</span></button><button id="soundBtn" class="icon-btn" title="Sound ein/aus">♫ <span>SOUND</span></button></div>
+    </header>
+    <section class="game-layout">
+      <div class="world-frame">
+        <canvas id="game" aria-label="Spielwelt Olpe"></canvas>
+        <div class="location-tag"><span class="location-pin">⌖</span><span><b id="locationName">OLPE · INNENSTADT</b><small id="locationSub">KREIS OLPE, NRW</small></span></div>
+        <div class="world-top-right"><span class="weather-glyph" id="weatherGlyph">☼</span><span id="weatherLabel">KLARER HIMMEL</span></div>
+        <div id="toast" class="toast"></div>
+        <div id="interaction" class="interaction-prompt"><kbd>E</kbd><span>INTERAGIEREN</span></div>
+        <div id="mapOverlay" class="map-overlay"><div class="map-title"><span>KREIS OLPE</span><button id="closeMap">✕</button></div><div class="map-canvas-wrap"><canvas id="minimap" width="440" height="300"></canvas></div><p>OLPE · ATTENDORN · DROLShAGEN · WENDEN · FINNENTROP · LENNESTADT · KIRCHHUNDEM</p></div>
+        <div id="startOverlay" class="start-overlay"><div class="start-content"><div class="eyebrow"><span></span> DEIN KREIS. DEIN ALLTAG.</div><h1>Ein neues Leben<br>im <em>Olpetal.</em></h1><p>Die Stadt erwacht. Ein Auftrag wartet. Und der ganze Kreis liegt vor dir.</p><div class="start-meta"><span>◷ &nbsp; MITTWOCH · 08:15</span><span>⌖ &nbsp; OLPE, INNENSTADT</span></div><button id="startBtn" class="primary-btn">WELT BETRETEN <b>→</b></button><small>WASD / PFEILTASTEN ZUM LAUFEN &nbsp; · &nbsp; E ZUM INTERAGIEREN</small></div><div class="start-decoration">51°01′ N<br>07°51′ O</div></div>
+        <div id="interiorLabel" class="interior-label"><span>⌂</span> <b>INNENRAUM</b><small>· RAUM ERKUNDEN</small></div>
+        <div class="touch-controls" aria-label="Touch-Steuerung"><div class="dpad"><button data-dir="up">↑</button><button data-dir="left">←</button><button data-dir="down">↓</button><button data-dir="right">→</button></div><button id="touchAction" class="touch-action">E<br><small>AKTION</small></button></div>
+      </div>
+      <aside id="sidebar" class="sidebar">
+        <div class="profile-row"><div class="avatar">JM</div><div class="profile-info"><b>JONAS MEYER</b><span>NEU IN OLPE <i>·</i> LVL 1</span></div><button class="more-btn" id="journalBtn" title="Journal">···</button></div>
+        <div class="wallet-card"><span class="wallet-label">KONTOSTAND</span><div class="balance"><span>€</span><strong id="money">2.450</strong></div><div class="wallet-foot"><span>▰ <b id="xp">0</b> XP</span><span>OLPE BANK <i>•• 2048</i></span></div></div>
+        <div class="section-heading"><span>DEIN TAG</span><span class="chapter">KAPITEL 01 <i>—</i> 05</span></div>
+        <div class="mission-card"><div class="mission-tag"><span class="mission-dot"></span> HAUPTGESCHICHTE <span class="mission-step" id="missionStep">01 / 05</span></div><h2 id="missionTitle">Ein guter erster Eindruck</h2><p id="missionText">Triff Mara am Marktplatz. Sie kennt hier jeden und hat bestimmt einen Tipp für den Start.</p><div class="mission-target"><span class="target-icon">⌖</span><span><small>NÄCHSTES ZIEL</small><b id="targetName">MARKTPLATZ</b></span><span class="distance" id="distance">120 m</span></div><div class="mission-progress"><span id="progressBar"></span></div></div>
+        <div class="section-heading jobs-heading"><span>ARBEIT FINDEN</span><button id="jobsBtn">ALLE JOBS <b>→</b></button></div>
+        <div class="job-card"><div class="job-icon">✳</div><div><b id="jobTitle">Noch ohne Job</b><span id="jobSub">Entdecke deine Möglichkeiten</span></div><button id="jobAction" aria-label="Jobs ansehen">+</button></div>
+        <div class="section-heading nearby-heading"><span>IN DEINER NÄHE</span><span class="nearby-live"><i></i> LIVE</span></div>
+        <div class="nearby-list" id="nearbyList"></div>
+        <div class="sidebar-footer"><span>OLPETAL STORIES</span><span>AUTOSAVE <i></i></span></div>
+      </aside>
+    </section>
+    <footer class="bottom-bar"><div class="controls-hint"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><small>BEWEGEN</small><i></i><span class="keycap wide">SHIFT</span><small>SPRINTEN</small><i></i><span class="keycap">E</span><small>INTERAGIEREN</small></div><div class="bottom-center"><span class="sound-wave">〰</span><span id="ambientText">MORGENSTIMMUNG · INNENSTADT</span></div><button id="settingsBtn" class="settings-btn">⚙ <span>EINSTELLUNGEN</span></button></footer>
+  </main>
+  <div id="modalBackdrop" class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modalClose">✕</button><div class="modal-kicker">OLPETAL STORIES · DEIN ALLTAG</div><h2 id="modalTitle">Journal</h2><div id="modalBody"></div></section></div>
+  <script src="game.js"></script>
+</body>
+</html>
